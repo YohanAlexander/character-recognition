@@ -26,6 +26,29 @@ bool Image::checkIfInside(int x, int y) const{
 
 }
 
+int Image::getAveragePixel(int x, int y) const{
+
+			int outputPixel = 0;
+			float averageCount = 0;
+
+			for(int xIndex = x - 1; xIndex <= x + 1; xIndex++){
+				for(int yIndex = y; yIndex <= y + 1; yIndex++){
+					averageCount += Image::getPixel(xIndex,yIndex);
+				}
+			}
+
+			averageCount = averageCount/9.0;
+
+			if(averageCount >= 0.2){
+				return 1;
+			}
+
+			else{
+				return 0;
+			}
+
+}
+
 //constructor
 Image::Image(){
 
@@ -113,6 +136,22 @@ Image Image::erodeImage() const{
 	}
 
 	return output;
+
+}
+
+Image Image::getAverageImage() const{
+
+		Image output;
+		output.setImageSize(imageX, imageY);
+
+		for(int x = 1; x < imageX - 1; x++){
+			for(int y = 1; y < imageY - 1; y++){
+				int average = Image::getAveragePixel(x,y);
+				output.setPixel(x,y,average);
+			}
+		}
+
+		return output;
 
 }
 

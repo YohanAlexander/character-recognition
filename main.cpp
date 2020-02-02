@@ -11,13 +11,18 @@ int main(){
 
 	Image input;
 	input.loadImage(path);
-	input.saveImage("input image test.pbm");
+	//input.saveImage("input image test.pbm");
 
-	Image eroded = input.erodeImage();
-	eroded.saveImage("eroded image.pbm");
+	Image average = input.getAverageImage();
+	//average.saveImage("average image.pbm");
 
-	Image dilated = eroded.dilatateImage().dilatateImage();
-	dilated.saveImage("dilated image.pbm");
+	Image eroded = average.erodeImage();
+	//eroded.saveImage("eroded image.pbm");
+
+	Image dilated = eroded.dilatateImage();
+	//dilated.saveImage("dilated image.pbm");
+	dilated.saveImage("sem ruido.pbm");
+
 
 	return 0;
 

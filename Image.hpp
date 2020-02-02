@@ -10,6 +10,7 @@ class Image{
         //private methods
         bool checkIfTouch(int x, int y) const;
         bool checkIfInside(int x, int y) const;
+        int getAveragePixel(int x, int y) const;
 
     public:
         //constructor
@@ -24,6 +25,7 @@ class Image{
         int getPixel(int x, int y) const;
         Image dilatateImage() const;
         Image erodeImage() const;
+        Image getAverageImage() const;
         void saveImage(char* name);
         void loadImage(char* name);
 
