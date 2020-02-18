@@ -4,25 +4,25 @@
 
 int main(){
 
-	char path[51];
-
+	char nome[51];
 	printf("Nome do arquivo pbm: ");
-	scanf("%s", path);
+	scanf("%s", nome);
 
 	Image input;
-	input.loadImage(path);
-	//input.saveImage("input image test.pbm");
+	input.loadImage(nome);
 
-	Image average = input.getAverageImage();
-	//average.saveImage("average image.pbm");
+	Image filteredImage = input.erodeImage().dilatateImage().dilatateImage().erodeImage().dilatateImage();
+	//filteredImage.saveImage("Filtered.pbm");
 
-	Image eroded = average.erodeImage();
-	//eroded.saveImage("eroded image.pbm");
+	//Image filteredImage = input.getAverageImage();
+	//filteredImage.saveImage("Filtered.pbm");
 
-	Image dilated = eroded.dilatateImage();
-	//dilated.saveImage("dilated image.pbm");
-	dilated.saveImage("sem ruido.pbm");
+	Image highlights = filteredImage.erodeImage().highlight();
+	//highlights.saveImage("Highlights.pbm");
 
+	Image allInOne = filteredImage;
+	allInOne.merge(highlights);
+	allInOne.saveImage("destacada.pbm");
 
 	return 0;
 
